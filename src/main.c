@@ -1,11 +1,9 @@
 #include <stdio.h>
 
-int main(){
-	// asdlkkasjdlkajdlkajdlkajdlkasjlkasjdklasjd
-	printf("Hola.\n");
+int main(int argn, char *args[])
+{
+    // Esta es la funcion principal
+    printf("Hola mundo.\n");
 
-	printf("no se.\n"); //asdlkjasdlkasjdlkasjdlkasjlkajdlkjalkasd
-	
-
-	return 0;
+    return 0;
 }
