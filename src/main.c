@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 int main(){
-	// prueba prueba prueba
+	// asdlkkasjdlkajdlkajdlkajdlkasjlkasjdklasjd
 	printf("Hola.\n");
+
+	printf("no se.\n");
 	
 
 	return 0;
