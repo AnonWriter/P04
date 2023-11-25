@@ -1,14 +1,37 @@
 #include <stdio.h>
+#include "../libs/ej/TADColaDin.h"
 
 int main(int argn, char *args[])
 {
-    // Esta es la funcion principal
-    printf("Hola mundo.\n");
+	// Primer simulacion
+	// Necesario: (excluyendo los graficos por ahora)
+	// -> Funciones
+		// Atencion_Al_Cliente() : funcion para controlar la atencion de cada una de las cajas
+		// ...
+		// Funciones de cola
 
-    for(int i = 0; i < 100; i++){
-        printf("%d", i + 1);
-    }
-    printf("\n");
 
-    return 0;
+	// Segunda simulaicion
+	// Necesario: (exluyendo los graficos por ahora)
+	// -> Funciones
+		// Atencion_A_Proceso();
+		// ...
+		// Funciones de cola
+	// -> Estructuras:
+		// struct proceso : una estructura que contenga toda la informacion necesaria de un proceso
+			// ./ Nombre
+			// ./ Descripcion
+			// ./ Tiempo solicitado
+			// ./ Tiempo real 
+
+
+	// Tercer simulacion
+	// Necesario: (exluyendo los graficos por ahora)
+	// -> Funciones
+		// Prioridad();
+		// Atencion_Al_Cliente
+		// ...
+		// Funcines de cola
+	// -> Estructuras:
+		// ...
 }
