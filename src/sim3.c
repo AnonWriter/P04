@@ -55,7 +55,9 @@ void Simulacion_3(char *arg1){
 			Queue(&cajas[elegir_caja].preferentes, cliente_actual);
 
 		if (t % t_atencion == 0)
-			Atencion(&cajas[elegir_caja]);
+			for (int i = 0; i < n_cajas; i++){
+				Atencion(&cajas[i]);
+			}
 
 		//
 	}
@@ -74,5 +76,15 @@ void Abrir_Caja(Caja *caj, unsigned int t){
 void Atencion(Caja *caj){
 	if (caj->cont_u > 5 && !Empty(&caj->usuarios)){
 		Dequeue(&caj->usuarios);
+	}
+
+	else if (!Empty(&caj->preferentes)){
+		Dequeue(&caj->preferentes);
+		caj->cont_u++;
+	}
+
+	else if (!Empty(&caj->clientes)){
+		Dequeue(&caj->clientes);
+		caj->cont_u++;
 	}
 }
