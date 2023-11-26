@@ -5,6 +5,10 @@
 #define QUANTUM 1000 // MIL MILISEGUNDOS
 
 #include "../libs/ej/TADColaDin.h"
+#include <ncurses.h>
+
+void IniciarNcurses(WINDOW *win);
+void Salir();
 
 /************************************************************************
 *			SEGUNDA SIMULACION				*
@@ -15,8 +19,7 @@
 void Simulacion_2(char *arg1);
 
 // Funciones de graficos
-void ProcActual();
-void ProcQueue();
+void Recibir_Datos(cola *Listos, int c_proc);
 
 
 /************************************************************************

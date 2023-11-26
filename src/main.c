@@ -23,7 +23,7 @@ int main(int argn, char *args[])
 			// ./ Descripcion
 			// ./ Tiempo solicitado
 			// ./ Tiempo real 
-//	Simulacion_2(args[1]);
+	Simulacion_2(args[1]);
 
 
 	// Tercer simulacion
@@ -40,5 +40,5 @@ int main(int argn, char *args[])
 		// struct persona : una estructura que contiene la prioridad de una persona
 			// ./ prioridad
 		// ...
-	Simulacion_3(args[1]);
+	//Simulacion_3(args[1]);
 }
