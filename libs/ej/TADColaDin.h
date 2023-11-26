@@ -14,6 +14,8 @@ durante la ejecución del programa.
  
 */
 
+#include "../simulaciones.h"
+
 //DEFINICIONES DE CONSTANTES
 #define TRUE	1
 #define FALSE	0
@@ -27,10 +29,10 @@ typedef unsigned char boolean;
 typedef struct elemento
 {
 	//Variables de la estructura "elemento" (El usuario puede modificar)
-	int n;
 	//***
 	//***
 	//***
+	Proceso p;
 } elemento;
 
 //Definir la estructura de un nodo dinámico

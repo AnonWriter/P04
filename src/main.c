@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../libs/ej/TADColaDin.h"
+#include "../libs/simulaciones.h"
 
 int main(int argn, char *args[])
 {
@@ -23,6 +24,7 @@ int main(int argn, char *args[])
 			// ./ Descripcion
 			// ./ Tiempo solicitado
 			// ./ Tiempo real 
+	Simulacion_2(args[1]);
 
 
 	// Tercer simulacion

@@ -7,19 +7,17 @@
 typedef struct proceso{
 	char nombre[50];
 	char actividad[200];
-	unsigned short int id;
+	char id[20];
 	unsigned int tiempo;
+	unsigned int tiempo_real;
 } Proceso;
 
 // Funcion principal de la segunda simulacion
 void Simulacion_2(char *arg1);
 
-// Funciones de apoyo
-void AtenderProceso(Proceso p);
-
 // Funciones de graficos
 void ProcActual();
 void ProcQueue();
-Proceso *CrearProceso();
+Proceso CrearProceso();
 
 #endif
