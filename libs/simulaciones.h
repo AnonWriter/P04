@@ -20,6 +20,8 @@ void Simulacion_2(char *arg1);
 
 // Funciones de graficos
 void Recibir_Datos(cola *Listos, int c_proc);
+void ProcListos(cola *l);
+void ProcActual(elemento p);
 
 
 /************************************************************************
