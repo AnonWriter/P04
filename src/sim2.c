@@ -27,75 +27,45 @@ void Simulacion_2(char *arg1){
 
 	// Pedir los datos del proceso i
 	Recibir_Datos(&Listos, c_proc);
-	/*
-	for (int i = 0; i < c_proc; i++){
-		printf("Nombre proc %d: ", i + 1);
-		fgets(aux.p.nombre, sizeof(aux.p.nombre), stdin);
-
-		printf("Actividad: ");
-		fgets(aux.p.actividad, sizeof(aux.p.actividad), stdin);
-
-		printf("ID: ");
-		fgets(aux.p.id, sizeof(aux.p.id), stdin);
-
-		printf("Tiempo solicitado: ");
-		scanf("%d", &aux.p.tiempo);
-
-		aux.p.tiempo_real = 0;
-
-		//Limpiar el buffer o algo porque hace cosas raras si no esta esto
-		while (getchar() != '\n');
-
-		Queue(&Listos, aux);
-	}
-	*/
 
 	clear();
 	refresh();
 
 	//parte de atencion
-	
-	
 	elemento actual_proc;
 	while(!Empty(&Listos)){
 		actual_proc = Dequeue(&Listos);
 
-		/*printf("-------------------------------------------------------------------\n");
-		printf("%s", actual_proc.p.nombre);
-		printf("%s", actual_proc.p.actividad);
-		printf("%s\n", actual_proc.p.id);
-		printf("Tiempo de ejecucion: %d\n", actual_proc.p.tiempo);
-		printf("Tiempo total: %d\n", actual_proc.p.tiempo_real);
-		printf("-------------------------------------------------------------------");
-		printf("\n");*/
-
 		//mostrar la cola de listos para ejecucion
-
-		usleep(TIEMPO_BASE * QUANTUM);
-
 		ProcActual(actual_proc);
 		ProcListos(&Listos);
+		ProcAnterior(actual_proc);
 
 		actual_proc.p.tiempo_real += 1;
 		actual_proc.p.tiempo -= 1;
 
+		usleep(TIEMPO_BASE * QUANTUM);
+
+
 		if(actual_proc.p.tiempo == 0){
 			Queue(&Terminados, actual_proc);
+			ProcTerminados(&Terminados);
 		}
 		else{
 			actual_proc.p.tiempo_real += Size(&Listos);
 			Queue(&Listos, actual_proc);
 		}
 
-
+		ProcActual(actual_proc);
+		ProcListos(&Listos);
+		ProcAnterior(actual_proc);
 	}
 
 	while(!Empty(&Terminados)){
 		actual_proc = Dequeue(&Terminados);
-		//printf("Proc: %s", actual_proc.p.nombre);
-		//printf("Tiempo total: %d\n", actual_proc.p.tiempo_real);
 	}
 	
+	getch();
 
 	Salir();
 
@@ -119,6 +89,8 @@ void Recibir_Datos(cola *Listos, int c_proc){
 	init_pair(2, COLOR_WHITE, COLOR_BLACK);
 	init_pair(3, COLOR_BLACK, COLOR_WHITE);
 	init_pair(4, COLOR_BLUE, COLOR_BLUE);
+	init_pair(5, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(6, COLOR_BLACK, COLOR_GREEN);
 	bkgd(COLOR_PAIR(2));
 
 	elemento aux;
@@ -211,6 +183,7 @@ void ProcListos(cola *l){
 		}
 
 		//dibujar las lineas
+		/*
 		attron(COLOR_PAIR(1));
 		for(int i = 0; i < 30; i++){
 			for(int j = 0; j < lim; j++){
@@ -235,15 +208,23 @@ void ProcListos(cola *l){
 			refresh();
 		}
 		attroff(COLOR_PAIR(1));
+		*/
 
 
 
 		// dibujar el nombre y el tiempo
+		attron(COLOR_PAIR(5));
+		move(16,12);
+		printw(" Listos ");
+		attroff(COLOR_PAIR(5));
 		for(int i = 0; i < lim; i++){
 			move(17 + i*5, 10);
 			printw("%s", Element(l,i + 1).p.nombre);
 
 			move(18 + i*5, 10);
+			printw("%s", Element(l,i + 1).p.id);
+
+			move(19 + i*5, 10);
 			printw("tiempo = %d", Element(l,i + 1).p.tiempo);
 		}
 
@@ -280,6 +261,10 @@ void ProcActual(elemento p){
 		attron(COLOR_PAIR(1));
 	}
 	attroff(COLOR_PAIR(1));
+	attron(COLOR_PAIR(6));
+	move(4,10);
+	printw(" Ejecutando ");
+	attroff(COLOR_PAIR(6));
 
 	move(7,10);
 	printw("%s", p.p.nombre);
@@ -287,8 +272,70 @@ void ProcActual(elemento p){
 	printw("%s", p.p.actividad);
 	move(11,10);
 	printw("ID: %s", p.p.id);
+	move(12,10);
+	printw("Tiempo restante: %d", p.p.tiempo);
 	move(13,10);
 	printw("Tiempo total: %d", p.p.tiempo_real);
+
+	refresh();
+}
+
+void ProcTerminados(cola *t){
+	int lim = Size(t);
+	for(int k = 1; k <= lim; k++){
+		attron(COLOR_PAIR(1));
+		for(int i = 0; i < 17*k; i++){
+			move(40, 160 - i);
+			printw(" ");
+
+			move(33, 160 - i);
+			printw(" ");
+		}
+		for(int l = 0; l < 7; l++){
+			move(40 - l, 160 - 17*k);
+			printw(" ");
+		}
+		attroff(COLOR_PAIR(1));
+		move(30, 120);
+		printw("Cola de terminados (<----)");
+
+		move(35, 162 - 17*k);
+		printw("%s",  Element(t,k).p.nombre);
+		move(36, 162 - 17*k);
+		printw("%s", Element(t,k).p.id);
+		move(38, 162 - 17*k);
+		printw("t_total: %d", Element(t,k).p.tiempo_real);
+		refresh();
+	}
+}
+
+void ProcAnterior(elemento e){
+	attron(COLOR_PAIR(1));
+	for(int i = 0; i < 30; i++){
+		move(7, 85 + i);
+		printw(" ");
+
+		move(16, 85 + i);
+		printw(" ");
+	}
+	for(int i = 0; i < 10; i++){
+		move(7 + i, 115);
+		printw(" ");
+
+		move(7 + i, 85);
+		printw(" ");
+	}
+	attroff(COLOR_PAIR(1));
+
+	move(6, 89);
+	printw("Proceso anterior");
+
+	move(9, 89);
+	printw("%s", e.p.nombre);
+	move(10, 89);
+	printw("%s", e.p.id);
+	move(11, 89);
+	printw("%d", e.p.tiempo);
 
 	refresh();
 }

@@ -22,6 +22,8 @@ void Simulacion_2(char *arg1);
 void Recibir_Datos(cola *Listos, int c_proc);
 void ProcListos(cola *l);
 void ProcActual(elemento p);
+void ProcTerminados(cola *t);
+void ProcAnterior(elemento e);
 
 
 /************************************************************************
