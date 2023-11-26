@@ -14,8 +14,6 @@ durante la ejecución del programa.
  
 */
 
-#include "../simulaciones.h"
-
 //DEFINICIONES DE CONSTANTES
 #define TRUE	1
 #define FALSE	0
@@ -25,6 +23,19 @@ durante la ejecución del programa.
 //Definir un boolean (Se modela con un "char")
 typedef unsigned char boolean;
 
+//provisional recordar ponerlo en la nueva libreria
+typedef struct proceso{
+	char nombre[50];
+	char actividad[200];
+	char id[20];
+	unsigned int tiempo;
+	unsigned int tiempo_real;
+} Proceso;
+
+typedef struct miembro {
+	unsigned char prioridad;
+} miembro;
+
 //Definir un elemento (Se modela con una estructura "elemento")
 typedef struct elemento
 {
@@ -32,7 +43,8 @@ typedef struct elemento
 	//***
 	//***
 	//***
-	Proceso p;
+	Proceso p; // Segunda sim
+	miembro m; // Tercera sim
 } elemento;
 
 //Definir la estructura de un nodo dinámico

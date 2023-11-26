@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../libs/ej/TADColaDin.h"
 #include "../libs/simulaciones.h"
 
 int main(int argn, char *args[])
@@ -15,7 +14,7 @@ int main(int argn, char *args[])
 	// Segunda simulaicion
 	// Necesario: (exluyendo los graficos por ahora)
 	// -> Funciones
-		// Atencion_A_Proceso();
+		// Atencion_Proceso();
 		// ...
 		// Funciones de cola
 	// -> Estructuras:
@@ -31,9 +30,14 @@ int main(int argn, char *args[])
 	// Necesario: (exluyendo los graficos por ahora)
 	// -> Funciones
 		// Prioridad();
-		// Atencion_Al_Cliente
+		// Atencion();
 		// ...
 		// Funcines de cola
 	// -> Estructuras:
+		// struct caja : una estructura que contiene la cola correspondiente y el tiempo de atención
+			// ./ Cola
+			// ./ Tiempo de atencion
+		// struct persona : una estructura que contiene la prioridad de una persona
+			// ./ prioridad
 		// ...
 }

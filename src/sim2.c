@@ -5,7 +5,6 @@
 #include <unistd.h> // En cuanto a esta libreria, tendras que cambiarla por windows.h para utilizar el sleep de windows y no usleep para mi
 
 #include "../libs/simulaciones.h"
-#include "../libs/ej/TADColaDin.h"
 
 void Simulacion_2(char *arg1){
 	// Recibir argumentos
