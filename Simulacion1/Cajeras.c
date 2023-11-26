@@ -62,10 +62,10 @@ int main(void)
 	}
 
 
-	printf("Introduzca el tiempo de atencion de las cajas en segundos: ");
+	printf("Introduce el tiempo de atencion de las cajas en milisegundos: ");
     scanf("%d", &tiempoAtencion);
 
-    printf("Introduzca el tiempo de llegada de los clientes en segundos: ");
+    printf("Introduce el tiempo de llegada de los clientes en milisegundos: ");
     scanf("%d", &tiempoLlegada);
 	system("cls");
 
