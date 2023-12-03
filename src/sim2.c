@@ -41,6 +41,8 @@ void Simulacion_2(char *arg1){
 		ProcListos(&Listos);
 		ProcAnterior(actual_proc);
 
+		refresh();
+
 		actual_proc.p.tiempo_real += 1;
 		actual_proc.p.tiempo -= 1;
 
@@ -194,7 +196,7 @@ void ProcListos(cola *l){
 				printw(" ");
 			}
 	
-			refresh();
+			//refresh();
 
 		}
 
@@ -205,7 +207,7 @@ void ProcListos(cola *l){
 			move(15 + i, 34);
 			printw(" ");
 
-			refresh();
+			//refresh();
 		}
 		attroff(COLOR_PAIR(1));
 		*/
@@ -228,7 +230,7 @@ void ProcListos(cola *l){
 			printw("tiempo = %d", Element(l,i + 1).p.tiempo);
 		}
 
-		refresh();
+		//refresh();
 	}
 }
 
@@ -277,7 +279,7 @@ void ProcActual(elemento p){
 	move(13,10);
 	printw("Tiempo total: %d", p.p.tiempo_real);
 
-	refresh();
+	//refresh();
 }
 
 void ProcTerminados(cola *t){
@@ -305,7 +307,7 @@ void ProcTerminados(cola *t){
 		printw("%s", Element(t,k).p.id);
 		move(38, 162 - 17*k);
 		printw("t_total: %d", Element(t,k).p.tiempo_real);
-		refresh();
+		//refresh();
 	}
 }
 
@@ -337,5 +339,5 @@ void ProcAnterior(elemento e){
 	move(11, 89);
 	printw("%d", e.p.tiempo);
 
-	refresh();
+	//refresh();
 }
